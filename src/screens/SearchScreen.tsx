@@ -29,12 +29,24 @@ export const SearchScreen = () => {
       
     }
 
-    setPokemonsFiltered(
-      simplePokemonList.filter(
-        (poke) => poke.name.toLowerCase().includes(term.toLowerCase())
+
+    if (isNaN(Number(term))) {
+
+      setPokemonsFiltered(
+        simplePokemonList.filter(
+          (poke) => poke.name.toLowerCase().includes(term.toLowerCase())
         )
-    )
-  
+      )
+    } else {
+      const pokemonById = simplePokemonList.find(poke=> poke.id === term)!
+
+      setPokemonsFiltered(
+        (pokemonById) ? [pokemonById] : []
+      )
+
+    }
+
+
 
 
   

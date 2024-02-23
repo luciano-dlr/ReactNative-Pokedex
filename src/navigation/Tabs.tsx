@@ -1,12 +1,16 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Navigation } from './Navigation';
-import { SearchScreen } from '../screens/SearchScreen';
-import { Platform, StatusBar } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Platform, StatusBar } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Navigation, RootStackParams } from './Navigation';
+import { PokemonScreen } from '../screens/PokemonScreen';
+import { SearchScreen } from '../screens/SearchScreen';
+import { TabSearchScreens } from './TabSearch';
 
 
 const Tab = createBottomTabNavigator();
+
 
 export const Tabs = () => {
   return (
@@ -56,7 +60,7 @@ export const Tabs = () => {
          
         <Tab.Screen
           name="SearchScreen"
-          component={SearchScreen}
+          component={TabSearchScreens}
           options={{
             tabBarLabel: 'Busqueda',
             tabBarIcon: ({ color }) => (

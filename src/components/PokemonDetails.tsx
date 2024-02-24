@@ -11,23 +11,28 @@ interface Props {
 
 
 export const PokemonDetails = ({ pokemon }: Props) => {
-    
-   
+
+
+
+
+
     return (
         <ScrollView
             showsVerticalScrollIndicator={false}
             style={{
-                ...StyleSheet.absoluteFillObject
+                ...StyleSheet.absoluteFillObject,
+
             }}
         >
 
+
             <View style={{
                 ...styles.container,
-                marginTop: 370
+                marginTop: 450, backgroundColor: 'white'
             }}>
-                <Text style={styles.title}>Types</Text>
+                <Text style={{ ...styles.title, backgroundColor: 'white' }}>Types</Text>
 
-                <View style={{ flexDirection: 'row' }}>
+                <View style={{ flexDirection: 'row', backgroundColor: 'white' }}>
 
                     {
                         pokemon.types.map(({ type }) => (
@@ -48,48 +53,105 @@ export const PokemonDetails = ({ pokemon }: Props) => {
 
                 </View>
 
-                
+
 
                 {/* peso */}
-                <Text style={styles.title}>Peso</Text>
+                <Text style={styles.title}>Weight</Text>
                 <Text style={styles.regularText}>{pokemon.weight}kg</Text>
 
+                <Text style={styles.title}>Height</Text>
+                <Text style={styles.regularText}>{pokemon.height / 10} m</Text>
+
+                <Text style={styles.title}>Base Experience</Text>
+                <Text style={styles.regularText}>{pokemon.base_experience} xp</Text>
+
+                {/* types */}
+                
+                <Text style={{...styles.title,paddingTop:20}}>Common / Shiny</Text>
+
+                
+                <ScrollView
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    style={{ backgroundColor: 'white' }}
+
+                //style
+                >
+                    <FadeInImage
+                        uri={pokemon.sprites.front_default}
+                        style={styles.basicSprite}
+                    />
+                    <FadeInImage
+                        uri={pokemon.sprites.back_default}
+                        style={styles.basicSprite}
+                    />
+                    <FadeInImage
+                        uri={pokemon.sprites.front_shiny}
+                        style={styles.basicSprite}
+                    />
+                    <FadeInImage
+                        uri={pokemon.sprites.back_shiny}
+                        style={styles.basicSprite}
+                    />
+                  
+
+                </ScrollView>
+
+                {/* stats base */}
+                <Text style={styles.title}>Base Stats</Text>
+
+                <View  >
+
+                    {
+                        pokemon.stats.map((stat, idice) => (
+
+                            <View
+                                key={stat.stat.name + idice}
+                                style={{ flexDirection: 'row' }}
+                            >
+                                <Text
+                                    style={{
+                                        ...styles.regularText,
+                                        marginRight: 10,
+                                        width: 150
+                                    }}
+                                    key={stat.stat.name}
+                                >
+                                    {stat.stat.name}
+
+
+
+                                </Text>
+                                <Text
+                                    style={{
+                                        ...styles.regularText,
+                                        fontWeight: 'bold'
+                                    }}
+
+                                >
+                                    {stat.base_stat}
+
+
+
+                                </Text>
+
+                            </View>
+
+                        ))
+                    }
+
+                </View>
+
+
+                {/* Version Group */}
+
             </View>
 
-            {/* types */}
-            <View style={styles.container}>
-                <Text style={styles.title}>Sprites</Text>
 
-            </View>
-
-            <ScrollView
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            
-            //style
-            >
-                <FadeInImage
-                uri={pokemon.sprites.front_default}
-                style={styles.basicSprite}
-                />
-                <FadeInImage
-                uri={pokemon.sprites.back_default}
-                style={styles.basicSprite}
-                />
-                <FadeInImage
-                uri={pokemon.sprites.front_shiny}
-                style={styles.basicSprite}
-                />
-                <FadeInImage
-                uri={pokemon.sprites.back_shiny}
-                style={styles.basicSprite}
-                />
-
-            </ScrollView>
 
             {/* habilidades base */}
-            <View style={styles.container}>
-                <Text style={styles.title}>Habilidades Base</Text>
+            <View style={{ ...styles.container, backgroundColor: 'white' }}>
+                <Text style={{ ...styles.title, backgroundColor: 'white' }}>Base Skills</Text>
 
                 <View style={{ flexDirection: 'row' }}>
 
@@ -111,14 +173,14 @@ export const PokemonDetails = ({ pokemon }: Props) => {
                     }
 
                 </View>
-    
+
             </View>
 
             {/* todos los movimientos */}
-            <View style={styles.container}>
-                <Text style={styles.title}>Movimientos</Text>
+            <View style={{ ...styles.container, backgroundColor: 'white' }}>
+                <Text style={styles.title}>Movements</Text>
 
-                <View style={{ flexDirection:'row',flexWrap:'wrap'}} >
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap' }} >
 
                     {
                         pokemon.moves.map(({ move }) => (
@@ -131,8 +193,8 @@ export const PokemonDetails = ({ pokemon }: Props) => {
                                 key={move.name}
                             >
                                 {move.name}
-                                
-                              
+
+
 
                             </Text>
 
@@ -140,67 +202,32 @@ export const PokemonDetails = ({ pokemon }: Props) => {
                     }
 
                 </View>
-    
+
             </View>
 
             {/* stats */}
-              <View style={styles.container}>
-                <Text style={styles.title}>Stats Base</Text>
+            <View style={{ ...styles.container, backgroundColor: 'white' }}>
+            
+                {/* New */}
+                <View style={{ ...styles.container, backgroundColor: 'white' }}>
+                  
 
-                <View  >
 
-                    {
-                        pokemon.stats.map(( stat, idice ) => (
 
-                           <View 
-                           key={stat.stat.name + idice}
-                           style={{flexDirection:'row'}}
-                           >
-                             <Text
-                                style={{
-                                    ...styles.regularText,
-                                    marginRight: 10,
-                                    width:150
-                                }}
-                                key={stat.stat.name}
-                            >
-                                {stat.stat.name}
-                                
-                              
+                    {/* sprite Final */}
 
-                            </Text>
-                             <Text
-                                style={{
-                                    ...styles.regularText,
-                                    fontWeight:'bold'
-                                }}
-                                
-                            >
-                                {stat.base_stat}
-                                
-                              
+                    <View style={{
+                        marginBottom: 50,
+                        alignItems: 'center'
+                    }}>
 
-                            </Text>
-                            
-                           </View>
-
-                        ))
-                    }
+                        <FadeInImage
+                            uri={pokemon.sprites.front_default}
+                            style={styles.basicSprite}
+                        />
+                    </View>
 
                 </View>
-
-            {/* sprite Final */}
-
-            <View style={{
-                marginBottom:20,
-                alignItems:'center'
-            }}>
-
-            <FadeInImage
-                uri={pokemon.sprites.front_default}
-                style={styles.basicSprite}
-                />
-            </View>
 
             </View>
 
@@ -216,20 +243,23 @@ export const PokemonDetails = ({ pokemon }: Props) => {
 const styles = StyleSheet.create({
 
     container: {
-        marginHorizontal: 20,
-        marginTop: 20
+        paddingHorizontal: 20,
+        paddingTop: 20,
+
     },
     title: {
         fontSize: 20,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: 'black'
     },
     regularText: {
         fontSize: 17,
-        marginVertical: 5
+        marginVertical: 5,
+        color: 'black'
     },
-    basicSprite:{
-        width:150,
-        height:150
+    basicSprite: {
+        width: 200,
+        height: 200
     }
 });
 

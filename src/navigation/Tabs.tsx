@@ -48,7 +48,7 @@ export const Tabs = () => {
           name="Home"
           component={Navigation}
           options={{
-            tabBarLabel: 'Listado',
+            tabBarLabel: 'List',
             tabBarIcon: ({ color }) => (
               <Icon
                 name='grid-outline'
@@ -62,7 +62,7 @@ export const Tabs = () => {
           name="SearchScreen"
           component={TabSearchScreens}
           options={{
-            tabBarLabel: 'Busqueda',
+            tabBarLabel: 'Search',
             tabBarIcon: ({ color }) => (
               <Icon
                 name='search-outline'

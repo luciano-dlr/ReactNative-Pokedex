@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParams } from '../navigation/Navigation';
@@ -20,33 +20,45 @@ export const PokemonScreen = ({ navigation, route }: Props) => {
   // console.log("🚀 ~ PokemonScreen ~ pokemon:", JSON.stringify(pokemon,null,4))
 
   const [isFocused, setIsFocused] = useState(false)
+
+
+
+  // console.log("🚀 ~ PokemonScreen ~ name:", name)
+
+  
   
 
   return (
     <View style={{flex:1}}>
-
-      {/* Header Container */}
-      <View style={{
-        ...styles.headerContainer,
-        backgroundColor: color,
-      }}>
-        <TouchableOpacity
+       <TouchableOpacity
           onPress={() => navigation.goBack()}
           activeOpacity={0.8}
           style={{
             ...styles.backBtn,
-            top: top + 10
+            top: top + 10,
+            backgroundColor:color,
+            borderRadius:200,
+            padding:2,
+            borderWidth:2,
+            borderColor:color
+            
           }}
         >
 
           <Icon
             name='arrow-back-outline'
             color='white'
-            size={35}
+            size={30}
           />
 
         </TouchableOpacity>
 
+      {/* Header Container */}
+      <View style={{
+        ...styles.headerContainer,
+        backgroundColor: color,
+      }}>
+      
         {/* nombre Pokemon */}
 
         <Text style={{
@@ -108,6 +120,7 @@ export const PokemonScreen = ({ navigation, route }: Props) => {
     </View>
   )
 }
+  // console.log("🚀 ~ PokemonScreen ~ capitalLetter:", capitalLetter)
 
 const styles = StyleSheet.create({
 
@@ -130,7 +143,7 @@ const styles = StyleSheet.create({
 
   headerContainer: {
     height: 370,
-    zIndex: 999,
+    // zIndex: 999,
     alignItems: 'center',
     borderBottomRightRadius: 1000,
     borderBottomLeftRadius: 1000
@@ -138,6 +151,8 @@ const styles = StyleSheet.create({
   backBtn: {
     position: 'absolute',
     left: 20,
+    zIndex: 999,
+
   },
   pokemonName: {
     color: 'white',
@@ -149,13 +164,16 @@ const styles = StyleSheet.create({
     width: 250,
     height: 250,
     bottom: -20,
-    opacity: 0.7
+    opacity: 0.7,
+    right:-100
   },
   pokemonImage: {
-    width: 270,
-    height: 270,
+    width: 300,
+    height: 300,
     position: 'absolute',
-    bottom:-20
+    bottom:-30,
+    right:-1
+
   },
   activityIndicator:{
     flex:1,

@@ -13,9 +13,12 @@ export type RootStackParams = {
 const Stack = createStackNavigator<RootStackParams>();
 
 export const Navigation = () => {
+
+  
   return (
     <>
-    <StatusBar barStyle={"dark-content"} backgroundColor="transparent" translucent />
+    <StatusBar barStyle={"dark-content"} backgroundColor="transparent" translucent  />
+    
     <Stack.Navigator
     screenOptions={{
       headerShown:false,

@@ -6,6 +6,8 @@ import { useState, useEffect } from 'react';
 
 import ImageColors from "react-native-image-colors";
 import { useNavigation } from '@react-navigation/native';
+import { RootStackParams } from '../navigation/Navigation';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 
 
@@ -20,9 +22,8 @@ interface Props {
 
 export const PokemonCard = ({ pokemon }: Props) => {
 
-    
 
-    const navigation = useNavigation()
+    const navigation = useNavigation<StackNavigationProp<RootStackParams>>()
 
 
     const [bgColor, setBgColor] = useState('grey');
@@ -54,7 +55,7 @@ export const PokemonCard = ({ pokemon }: Props) => {
         <TouchableOpacity
             activeOpacity={0.9}
             onPress={()=> navigation.navigate('PokemonScreen',{
-                simplePokemon:pokemon,
+                simplePokemon:{...pokemon,name:pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)},
                 color: bgColor
             }) }
             >
@@ -62,12 +63,24 @@ export const PokemonCard = ({ pokemon }: Props) => {
                 ...styles.cardContainer,
                 width: windowWidth * 0.4,
                 backgroundColor: bgColor
-            }}>
-                <View>
+            }}> 
+                <View style={{width:'100%',padding:10}}>
 
-                    <Text style={styles.name}>
-                        {pokemon.name}
-                        {'\n#' + pokemon.id}
+                    <Text 
+                    style={styles.name} 
+                    numberOfLines={1}
+                    ellipsizeMode='tail'
+                    >
+                        {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+                      
+                    </Text>
+                    <Text 
+                    style={styles.name} 
+                    numberOfLines={1}
+                    ellipsizeMode='tail'
+                    >
+                       
+                        #{pokemon.id}
                     </Text>
 
                 </View>
@@ -92,6 +105,7 @@ export const PokemonCard = ({ pokemon }: Props) => {
         </TouchableOpacity>
     )
 }
+   
 
 const styles = StyleSheet.create({
 
@@ -140,8 +154,9 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 20,
         fontWeight: 'bold',
-        top: 20,
-        left: 20
+        // top: 20,
+        // left: 20,
+        
     },
 
 });

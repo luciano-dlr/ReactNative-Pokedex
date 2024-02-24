@@ -35,10 +35,12 @@ export const SearchInput = ({style,onDebounce}:Props) => {
                 <TextInput
                     placeholder='Search Pokemon'
                     style={styles.textInput}
-                    autoCapitalize='none'
+                    autoCapitalize='words'
                     autoCorrect={false}
                     value={textValue}
                     onChangeText={setTextValue}
+                    placeholderTextColor={'black'}
+                    
                 />
 
                 <Icon
@@ -77,6 +79,7 @@ const styles = StyleSheet.create({
     textInput: {
         flex: 1,
         fontSize: 18,
+        color:'black'
         
     }
 

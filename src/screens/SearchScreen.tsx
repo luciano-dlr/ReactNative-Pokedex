@@ -68,11 +68,13 @@ export const SearchScreen = () => {
 
       <SearchInput 
       onDebounce={(value)=> setTerm(value) }
+      
       style={{
         position:'absolute',
         zIndex:999,
         width:screenWidth -40,
-        top:(Platform.OS === 'ios') ? top:top + 10
+        
+        top:(Platform.OS === 'ios') ? top:top + 10,
       }}/>
 
       <FlatList

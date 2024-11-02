@@ -1,5 +1,5 @@
 
-![Uploading pokedex-app.gif…]()
+![pokedex-app](https://github.com/user-attachments/assets/50dddc3d-dac2-4098-95c4-b427a07c724e)
 
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
